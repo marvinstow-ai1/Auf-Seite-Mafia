@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCG Shop Roadmap</title>
+<meta name="description" content="Die 12 Projektphasen zum eigenen TCG-Onlineshop – aufgebaut wie ein Card Shop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0d14;
+  --bg-2:#12141f;
+  --surface:#181b29;
+  --surface-2:#20243a;
+  --line:#2a2f4a;
+  --text:#eef0fa;
+  --muted:#9aa0bd;
+  --accent:#ffcc33;
+  --accent-ink:#1a1400;
+  --hot:#ff4d6d;
+  --ok:#3ddc97;
+  --radius:16px;
+  --shadow:0 18px 40px -18px rgba(0,0,0,.7);
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+@media(min-width:720px){.wrap{padding:0 28px}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- Topbar & Header ---------- */
+.topbar{background:linear-gradient(90deg,#ff4d6d,#ffcc33,#3ddc97,#4dabff,#b26bff);color:#0c0d14;font-weight:600;font-size:13px;text-align:center;padding:7px 16px}
+header.site{position:sticky;top:0;z-index:40;background:rgba(12,13,20,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.head{display:flex;align-items:center;gap:16px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em;white-space:nowrap}
+.logo-mark{width:30px;height:40px;border-radius:6px;background:conic-gradient(from 200deg,#ff4d6d,#ffcc33,#3ddc97,#4dabff,#b26bff,#ff4d6d);position:relative;transform:rotate(-8deg);box-shadow:0 4px 14px rgba(255,204,51,.3)}
+.logo-mark::after{content:"";position:absolute;inset:3px;border-radius:4px;background:var(--bg);opacity:.85}
+.logo-mark::before{content:"";position:absolute;inset:9px 7px;border-radius:50%;background:var(--accent);z-index:1}
+.logo small{display:block;font-family:var(--body);font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+nav.main{display:none;gap:4px;margin-left:12px}
+nav.main a{padding:8px 12px;border-radius:10px;font-weight:500;font-size:14px;color:var(--muted)}
+nav.main a:hover{color:var(--text);background:var(--surface)}
+.search{flex:1;max-width:340px;margin-left:auto;position:relative;display:none}
+.search input{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:999px;color:var(--text);padding:10px 16px 10px 40px;font:inherit;font-size:14px}
+.search input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.cart{margin-left:auto;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);padding:8px 14px 8px 10px;border-radius:999px;font-size:14px;font-weight:600}
+.search+.cart{margin-left:0}
+.cart .badge{background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:1px 8px;font-size:12px;font-weight:700}
+@media(min-width:900px){nav.main{display:flex}}
+@media(min-width:640px){.search{display:block}}
+.mobile-search{padding:0 0 12px}
+.mobile-search .search{display:block;max-width:none}
+@media(min-width:640px){.mobile-search{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:-40% -10% auto auto;width:780px;height:780px;background:radial-gradient(closest-side,rgba(178,107,255,.28),transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:auto auto -50% -10%;width:680px;height:680px;background:radial-gradient(closest-side,rgba(255,204,51,.16),transparent 70%);pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;gap:40px;padding:56px 0 64px;align-items:center}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr;padding:80px 0 88px}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--accent);background:rgba(255,204,51,.1);border:1px solid rgba(255,204,51,.3);padding:5px 12px;border-radius:999px}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,204,51,.2)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6.4vw,68px);line-height:1.02;letter-spacing:-.035em;margin:18px 0 18px}
+h1 .foil{background:linear-gradient(100deg,#ff4d6d,#ffcc33 30%,#3ddc97 55%,#4dabff 75%,#b26bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:18px;color:var(--muted);max-width:52ch;margin:0 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:12px;padding:13px 20px;font-weight:700;font-size:15px;transition:transform .15s,box-shadow .15s,background .15s}
+.btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 10px 24px -10px rgba(255,204,51,.6)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{background:var(--surface);border:1px solid var(--line)}
+.btn-ghost:hover{background:var(--surface-2)}
+.stats{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--display);font-size:30px;font-weight:800;letter-spacing:-.02em}
+.stat span{font-size:13px;color:var(--muted)}
+
+.fan{position:relative;height:360px;display:flex;justify-content:center;align-items:center}
+@media(min-width:900px){.fan{height:440px}}
+.fan .tcg{position:absolute;width:200px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+@media(min-width:900px){.fan .tcg{width:236px}}
+.fan .tcg:nth-child(1){transform:translateX(-120px) rotate(-14deg) translateY(18px)}
+.fan .tcg:nth-child(2){transform:translateY(-10px);z-index:2}
+.fan .tcg:nth-child(3){transform:translateX(120px) rotate(14deg) translateY(18px)}
+.fan:hover .tcg:nth-child(1){transform:translateX(-160px) rotate(-18deg) translateY(10px)}
+.fan:hover .tcg:nth-child(3){transform:translateX(160px) rotate(18deg) translateY(10px)}
+.fan:hover .tcg:nth-child(2){transform:translateY(-24px) scale(1.03)}
+
+/* ---------- Trading card ---------- */
+.tcg{--c1:#4dabff;--c2:#b26bff;aspect-ratio:63/88;border-radius:14px;padding:8px;background:linear-gradient(145deg,var(--c1),var(--c2));box-shadow:var(--shadow),inset 0 0 0 1px rgba(255,255,255,.25);position:relative;transform-style:preserve-3d;color:#fff;text-align:left}
+.tcg-in{height:100%;border-radius:9px;background:#11131f;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.tcg-top{display:flex;justify-content:space-between;align-items:center;padding:7px 9px 6px;gap:6px;background:linear-gradient(90deg,rgba(255,255,255,.12),rgba(255,255,255,.03))}
+.tcg-name{font-family:var(--display);font-weight:800;font-size:13px;line-height:1.1;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tcg-cost{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:12px;background:linear-gradient(145deg,var(--c1),var(--c2));box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
+.tcg-art{margin:0 7px;flex:1 1 52%;border-radius:6px;position:relative;overflow:hidden;background:
+  radial-gradient(120% 90% at 30% 20%,color-mix(in srgb,var(--c1) 70%,transparent),transparent 60%),
+  radial-gradient(120% 90% at 80% 90%,color-mix(in srgb,var(--c2) 75%,transparent),transparent 60%),#0a0b12;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+.tcg-art svg{width:46%;height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.45))}
+.tcg-art .num{position:absolute;right:8px;bottom:2px;font-family:var(--display);font-weight:800;font-size:42px;line-height:1;opacity:.18;letter-spacing:-.04em}
+.tcg-type{margin:6px 7px 0;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;letter-spacing:.03em;background:rgba(255,255,255,.08);display:flex;justify-content:space-between;gap:6px}
+.tcg-type .rar{color:var(--c1);white-space:nowrap}
+.tcg-text{margin:6px 7px 0;padding:6px 8px;flex:1 1 30%;border-radius:4px;background:#ece6d6;color:#2b2618;font-size:10.5px;line-height:1.35;overflow:hidden}
+.tcg-foot{display:flex;justify-content:space-between;align-items:center;padding:5px 9px 6px;font-size:9.5px;color:rgba(255,255,255,.65);font-weight:600}
+.tcg-foot .pt{background:rgba(255,255,255,.12);padding:1px 7px;border-radius:4px;color:#fff}
+.tcg .shine{position:absolute;inset:0;border-radius:14px;pointer-events:none;mix-blend-mode:color-dodge;opacity:0;transition:opacity .3s;
+  background:linear-gradient(115deg,transparent 20%,rgba(255,0,140,.35) 36%,rgba(255,230,0,.35) 44%,rgba(0,255,200,.35) 52%,rgba(0,140,255,.35) 60%,transparent 76%);
+  background-size:250% 250%;background-position:var(--mx,50%) var(--my,50%)}
+.tcg:hover .shine,.tcg.holo .shine{opacity:.75}
+.tcg.done::after{content:"✓ Erledigt";position:absolute;top:14px;right:-6px;background:var(--ok);color:#03281a;font-weight:800;font-size:11px;padding:3px 10px;border-radius:4px;transform:rotate(6deg);box-shadow:0 4px 10px rgba(0,0,0,.4)}
+
+/* ---------- Sections ---------- */
+section{padding:72px 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:28px}
+.sec-head h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;margin:0;line-height:1.1}
+.sec-head p{margin:6px 0 0;color:var(--muted);max-width:60ch}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+
+/* USP bar */
+.usp{border-bottom:1px solid var(--line);background:var(--bg-2)}
+.usp .wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+@media(min-width:900px){.usp .wrap{grid-template-columns:repeat(4,1fr)}}
+.usp-item{display:flex;gap:12px;align-items:center;padding:20px 8px;font-size:14px}
+.usp-item b{display:block;font-size:14px}
+.usp-item span{color:var(--muted);font-size:13px}
+.usp-ic{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);color:var(--accent)}
+
+/* Category chips */
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;margin:0 -16px;padding-left:16px;padding-right:16px}
+@media(min-width:720px){.chips{margin:0;padding-left:0;padding-right:0;flex-wrap:wrap}}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;color:var(--muted);transition:all .15s}
+.chip:hover{color:var(--text)}
+.chip[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.chip .n{opacity:.6;margin-left:4px}
+
+/* Product grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:22px}
+.product{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s,transform .2s;cursor:pointer;text-align:left;width:100%}
+.product:hover{border-color:color-mix(in srgb,var(--c1) 60%,var(--line));transform:translateY(-3px)}
+.product:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.product .stage{background:radial-gradient(80% 70% at 50% 40%,color-mix(in srgb,var(--c1) 22%,transparent),transparent 70%),var(--bg-2);border-radius:12px;padding:22px 0;display:grid;place-items:center;perspective:900px}
+.product .tcg{width:62%;transition:transform .15s ease-out}
+.product .meta{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);font-weight:600}
+.tag{padding:3px 9px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.02em}
+.tag.open{background:rgba(154,160,189,.14);color:var(--muted)}
+.tag.prog{background:rgba(255,204,51,.14);color:var(--accent)}
+.tag.done{background:rgba(61,220,151,.14);color:var(--ok)}
+.product h3{margin:0;font-family:var(--display);font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.product p{margin:0;font-size:14px;color:var(--muted)}
+.bar{height:6px;border-radius:99px;background:var(--bg-2);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--c1),var(--c2));transition:width .4s}
+.prow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.price{font-family:var(--display);font-weight:800;font-size:18px}
+.price small{font-family:var(--body);font-size:12px;color:var(--muted);font-weight:500}
+.add{border:0;border-radius:10px;padding:9px 14px;font-weight:700;font-size:13px;background:var(--text);color:var(--bg)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;border:1px dashed var(--line);border-radius:var(--radius)}
+
+/* Featured / deal */
+.feature{background:linear-gradient(120deg,#1d1534,#151a33 60%,#10202a);border:1px solid var(--line);border-radius:24px;display:grid;gap:28px;padding:28px;align-items:center;overflow:hidden;position:relative}
+@media(min-width:900px){.feature{grid-template-columns:280px 1fr;padding:40px 48px}}
+.feature .tcg{width:220px;margin:0 auto}
+.feature h3{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.03em;margin:8px 0 10px;line-height:1.1}
+.feature p{color:var(--muted);margin:0 0 18px}
+.next-list{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:8px}
+.next-list li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.next-list li::before{content:"";flex:none;width:18px;height:18px;margin-top:2px;border-radius:5px;border:2px solid var(--accent)}
+
+/* Roadmap */
+.road{display:grid;gap:0;position:relative}
+.road::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:var(--line)}
+@media(min-width:900px){.road{grid-template-columns:repeat(4,1fr);gap:20px}.road::before{display:none}}
+.step{position:relative;display:flex;gap:16px;padding:12px 0}
+@media(min-width:900px){.step{flex-direction:column;gap:10px;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}}
+.dot{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:14px;background:linear-gradient(145deg,var(--c1),var(--c2));position:relative;z-index:1;color:#fff}
+.step h4{margin:0;font-size:15px;font-weight:700;line-height:1.3}
+.step span{font-size:13px;color:var(--muted)}
+.step .stack{display:flex;flex-direction:column;gap:2px}
+.blocks{display:grid;gap:20px}
+.block-title{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px}
+
+/* Rarity legend */
+.rarity{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.rarity span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.rarity i{width:10px;height:10px;border-radius:3px}
+
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:820px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 18px}
+summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:20px;line-height:1;color:var(--accent);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0 0 16px;color:var(--muted)}
+
+/* Newsletter */
+.news{background:var(--accent);color:var(--accent-ink);border-radius:24px;padding:32px 28px;display:grid;gap:20px;align-items:center}
+@media(min-width:900px){.news{grid-template-columns:1fr auto;padding:40px 48px}}
+.news h3{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.2vw,32px);letter-spacing:-.03em;margin:0 0 6px;line-height:1.1}
+.news p{margin:0;opacity:.8}
+.news .btns .btn{background:var(--accent-ink);color:var(--accent)}
+.news .btns .btn.alt{background:transparent;color:var(--accent-ink);border:2px solid var(--accent-ink)}
+
+footer{border-top:1px solid var(--line);background:var(--bg-2);padding:48px 0 28px;margin-top:72px;font-size:14px;color:var(--muted)}
+.fgrid{display:grid;gap:28px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:900px){.fgrid{grid-template-columns:1.6fr repeat(3,1fr)}}
+.fgrid h5{color:var(--text);font-size:14px;margin:0 0 10px}
+.fgrid ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.fgrid a:hover{color:var(--text)}
+.fbrand{grid-column:1/-1}
+@media(min-width:900px){.fbrand{grid-column:auto}}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--line);margin-top:32px;padding-top:20px;font-size:13px}
+
+/* ---------- Modal (product detail) ---------- */
+dialog{border:0;padding:0;background:transparent;color:var(--text);max-width:min(1000px,calc(100vw - 24px));width:100%;max-height:calc(100dvh - 24px)}
+dialog::backdrop{background:rgba(5,6,10,.78);backdrop-filter:blur(6px)}
+.pd{background:var(--surface);border:1px solid var(--line);border-radius:22px;display:grid;overflow:hidden;max-height:calc(100dvh - 24px)}
+@media(min-width:860px){.pd{grid-template-columns:340px 1fr}}
+.pd-left{background:radial-gradient(80% 60% at 50% 40%,color-mix(in srgb,var(--c1) 28%,transparent),transparent 70%),var(--bg-2);padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;perspective:900px}
+.pd-left .tcg{width:200px}
+@media(min-width:860px){.pd-left .tcg{width:260px}}
+.pd-right{padding:26px 24px;overflow:auto;display:flex;flex-direction:column;gap:16px}
+@media(min-width:860px){.pd-right{padding:32px 34px}}
+.pd-top{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.pd-right h3{font-family:var(--display);font-weight:800;font-size:clamp(24px,3vw,30px);letter-spacing:-.03em;margin:4px 0 0;line-height:1.1}
+.pd-right .desc{color:var(--muted);margin:0}
+.x{flex:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--bg-2);display:grid;place-items:center;font-size:20px}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.checks label{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:10px;background:var(--bg-2);border:1px solid transparent;cursor:pointer;font-size:15px;transition:border-color .15s,background .15s}
+.checks label:hover{border-color:var(--line)}
+.checks input{appearance:none;flex:none;width:20px;height:20px;margin:1px 0 0;border-radius:6px;border:2px solid var(--muted);display:grid;place-items:center;cursor:pointer;transition:all .15s}
+.checks input:checked{background:var(--ok);border-color:var(--ok)}
+.checks input:checked::after{content:"";width:5px;height:10px;border:solid #03281a;border-width:0 2.5px 2.5px 0;transform:translateY(-1px) rotate(45deg)}
+.checks input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.checks input:checked+span{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(154,160,189,.5)}
+.checks .i{font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px;margin-left:auto;padding-left:8px;flex:none;margin-top:2px}
+.pd-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px}
+.pd-nav{display:flex;gap:8px}
+.pd-progress{width:100%}
+.pd-progress .prow{font-size:13px;color:var(--muted);margin-bottom:6px}
+mark{background:rgba(255,204,51,.3);color:inherit;border-radius:3px;padding:0 2px}
+
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,120px);background:var(--text);color:var(--bg);padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;z-index:100;transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:var(--shadow);max-width:calc(100vw - 32px)}
+.toast.show{transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar">12 Phasen · 179 Aufgaben · Dein Fortschritt wird lokal im Browser gespeichert</div>
+
+<header class="site">
+  <div class="wrap">
+    <div class="head">
+      <a href="#top" class="logo" aria-label="Zur Startseite">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>Card Shop HQ<small>Roadmap zum TCG-Onlineshop</small></span>
+      </a>
+      <nav class="main" aria-label="Hauptnavigation">
+        <a href="#phasen">Phasen</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#next">Als Nächstes</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <label class="search">
+        <span class="sr">Aufgaben durchsuchen</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="q" placeholder="Aufgabe suchen … z. B. LUCID">
+      </label>
+      <a href="#phasen" class="cart" title="Erledigte Aufgaben">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+        <span class="badge" id="cartCount">0</span>
+      </a>
+    </div>
+    <div class="mobile-search">
+      <label class="search">
+        <span class="sr">Aufgaben durchsuchen</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="q2" placeholder="Aufgabe suchen …">
+      </label>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><i></i>Neues Set: TCG-Onlineshop · Projektphasen</span>
+        <h1>Vom Startkapital zum <span class="foil">eigenen Card Shop.</span></h1>
+        <p class="lead">Zwölf Phasen von der Zieldefinition über Lieferanten, Sortiment und Shop-Technik bis zum Launch. Jede Phase ist eine Karte, jede Aufgabe ein Häkchen. Sammle sie alle.</p>
+        <div class="btns">
+          <a href="#phasen" class="btn btn-primary">Alle Phasen ansehen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#next" class="btn btn-ghost">Weitermachen</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>12</b><span>Phasen</span></div>
+          <div class="stat"><b>179</b><span>Aufgaben</span></div>
+          <div class="stat"><b id="heroPct">0 %</b><span>Gesammelt</span></div>
+        </div>
+      </div>
+      <div class="fan" id="fan" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- USP -->
+  <div class="usp">
+    <div class="wrap">
+      <div class="usp-item"><div class="usp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg></div><div><b>Rechtlich sauber</b><span>Gewerbe, AGB, LUCID</span></div></div>
+      <div class="usp-item"><div class="usp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13v10H3zM16 10h4l1 3v4h-5"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div><div><b>Echte Distributoren</b><span>Originalware statt Risiko</span></div></div>
+      <div class="usp-item"><div class="usp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/></svg></div><div><b>Durchkalkuliert</b><span>Margen & Break-even</span></div></div>
+      <div class="usp-item"><div class="usp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 6.3 6.4.5-4.9 4.2 1.5 6.5L12 16l-5.6 3.5 1.5-6.5L3 8.8l6.4-.5z"/></svg></div><div><b>Community first</b><span>Discord, Events, Social</span></div></div>
+    </div>
+  </div>
+
+  <!-- PHASEN / SHOP GRID -->
+  <section id="phasen">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="kicker">Das komplette Set</div>
+          <h2>Alle Phasen im Sortiment</h2>
+          <p>Klick auf eine Karte, um die Aufgaben der Phase zu öffnen und abzuhaken.</p>
+          <div class="rarity" id="rarityLegend"></div>
+        </div>
+      </div>
+      <div class="chips" role="group" aria-label="Filter">
+        <button class="chip" data-f="all" aria-pressed="true">Alle<span class="n" id="n-all"></span></button>
+        <button class="chip" data-f="open" aria-pressed="false">Offen<span class="n" id="n-open"></span></button>
+        <button class="chip" data-f="prog" aria-pressed="false">In Arbeit<span class="n" id="n-prog"></span></button>
+        <button class="chip" data-f="done" aria-pressed="false">Erledigt<span class="n" id="n-done"></span></button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- FEATURED: NEXT UP -->
+  <section id="next" style="padding-top:0">
+    <div class="wrap">
+      <div class="feature" id="feature"></div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="kicker">Roadmap</div>
+          <h2>In vier Booster-Wellen zum Launch</h2>
+          <p>Die Phasen bauen aufeinander auf und lassen sich zu vier Abschnitten bündeln.</p>
+        </div>
+      </div>
+      <div class="blocks" id="road"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="kicker">Hilfe</div>
+          <h2>Häufige Fragen</h2>
+        </div>
+      </div>
+      <div class="faq">
+        <details><summary>Wo wird mein Fortschritt gespeichert?</summary><p>Die Häkchen landen im lokalen Speicher deines Browsers. Sie bleiben erhalten, wenn du die Seite neu lädst, sind aber nicht auf anderen Geräten oder in anderen Browsern sichtbar.</p></details>
+        <details><summary>Muss ich die Phasen der Reihe nach abarbeiten?</summary><p>Grundsätzlich ja: Phase 0 bis 3 klären, ob und wie sich der Shop rechnet. Einiges läuft parallel, zum Beispiel Lieferantenrecherche (Phase 4) und Shop-Technik (Phase 6), während Gewerbe und Steuer vorbereitet werden.</p></details>
+        <details><summary>Was bedeuten die Seltenheitsstufen?</summary><p>Sie zeigen grob den Aufwand und das Gewicht einer Phase: Common sind kurze Grundlagenphasen, Legendary die Phasen mit den meisten Aufgaben oder dem größten Kapitaleinsatz.</p></details>
+        <details><summary>Ersetzt die Roadmap eine Steuer- oder Rechtsberatung?</summary><p>Nein. Phase 2 enthält bewusst den Punkt „Steuerliche und rechtliche Beratung einplanen“. Die Liste hilft beim Strukturieren, nicht beim Prüfen im Einzelfall.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding-top:0;padding-bottom:0">
+    <div class="wrap">
+      <div class="news">
+        <div>
+          <h3>Fortschritt sichern oder neu starten</h3>
+          <p>Exportiere deine Checkliste als Textdatei oder setze alle Häkchen zurück.</p>
+        </div>
+        <div class="btns">
+          <button class="btn" id="exportBtn">Checkliste exportieren</button>
+          <button class="btn alt" id="resetBtn">Zurücksetzen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a href="#top" class="logo"><span class="logo-mark" aria-hidden="true"></span><span>Card Shop HQ</span></a>
+        <p style="max-width:34ch;margin-top:12px">Projektplan für den Aufbau eines Onlineshops für Trading Card Games: Displays, Booster, Einzelkarten und Zubehör.</p>
+      </div>
+      <div><h5>Start</h5><ul id="f1"></ul></div>
+      <div><h5>Aufbau</h5><ul id="f2"></ul></div>
+      <div><h5>Betrieb</h5><ul id="f3"></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Card Shop HQ · Projektplanung</span><span>Impressum · Datenschutz · AGB folgen in Phase 2</span></div>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="pdTitle"></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const PHASES = [
+  {t:"Ausgangslage und Zieldefinition", s:"Ausgangslage", d:"Kassensturz und Kompass: Was ist an Geld, Zeit und Know-how da, und wohin soll die Reise gehen?",
+   c:["#4dabff","#2f6bff"], ic:"compass",
+   i:["Verfügbares Startkapital feststellen","Monatliches Budget festlegen","Verfügbaren Zeitaufwand pro Woche erfassen","Gewünschten Startzeitpunkt bestimmen","Erfahrungen mit TCGs und Onlinehandel erfassen","Standort und Lagerungsmöglichkeiten prüfen","Technische Kenntnisse bewerten","Risikobereitschaft einschätzen","Persönliche und geschäftliche Ziele definieren","Erste Machbarkeitseinschätzung erstellen"]},
+  {t:"Geschäftsmodell und Marktanalyse", s:"Marktanalyse", d:"Wer kauft was? Zielgruppen, Märkte, Wettbewerb und Margen, bis das Geschäftsmodell steht.",
+   c:["#b26bff","#6b3dff"], ic:"chart",
+   i:["Zielgruppen und Kundensegmente definieren","Relevante TCG-Märkte analysieren","Nachfrage nach versiegelten Produkten prüfen","Nachfrage nach Einzelkarten prüfen","Wettbewerb in Deutschland und Europa analysieren","Preisstrukturen und Margen untersuchen","Kapitalbindung und Reprint-Risiken bewerten","Geschäftsmodellvarianten vergleichen","Möglichkeiten zur Differenzierung entwickeln","Vorläufiges Geschäftsmodell auswählen"]},
+  {t:"Gewerbeanmeldung und rechtliche Grundlagen", s:"Recht & Gewerbe", d:"Gewerbe, Steuern, Konto und alle Pflichtangaben, damit der Shop abmahnsicher starten kann.",
+   c:["#9aa7c7","#4b5675"], ic:"shield",
+   i:["Passende Unternehmensform prüfen","Gewerbe anmelden","Steuerliche Erfassung vorbereiten","Umsatzsteuer und Kleinunternehmerregelung bewerten","Geschäftskonto einrichten","Buchhaltung organisieren","Rechnungsstellung vorbereiten","Impressum erstellen","Datenschutzerklärung vorbereiten","Widerrufsbelehrung und AGB erstellen lassen oder prüfen","Preisangaben und Pflichtinformationen umsetzen","Verpackungsgesetz und LUCID-Registrierung prüfen","Marken-, Bild- und Nutzungsrechte prüfen","Produktsicherheitsanforderungen klären","Steuerliche und rechtliche Beratung einplanen"]},
+  {t:"Finanzplanung und Wirtschaftlichkeit", s:"Finanzplan", d:"Alle Kosten auf den Tisch, Margen definieren und den Break-even berechnen, bevor das erste Display bestellt wird.",
+   c:["#3ddc97","#0f9e6a"], ic:"coin",
+   i:["Einmalige Gründungskosten kalkulieren","Kosten für Shop, Domain und Software kalkulieren","Kosten für Verpackungsmaterial kalkulieren","Lager- und Einrichtungskosten kalkulieren","Warenbudget festlegen","Zahlungsanbietergebühren berücksichtigen","Versand- und Retourenkosten kalkulieren","Marketingbudget definieren","Laufende Fixkosten erfassen","Variable Kosten erfassen","Liquiditätsreserve festlegen","Produktkalkulation entwickeln","Zielmargen definieren","Break-even-Punkt berechnen","Szenarien für unterschiedliche Umsätze erstellen","Maximalbudget für erste Display-Investitionen festlegen"]},
+  {t:"Lieferanten und Distributoren", s:"Lieferanten", d:"Seriöse Großhändler finden, Konditionen vergleichen und Händlerkonten eröffnen, mit Plan B in der Hinterhand.",
+   c:["#ff9f43","#e8590c"], ic:"truck",
+   i:["Lieferantenarten unterscheiden","Relevante Großhändler und Distributoren recherchieren","Händleranforderungen prüfen","Benötigte Unternehmensunterlagen vorbereiten","Lieferanten nach TCG und Produktbereich bewerten","Mindestbestellmengen prüfen","Zahlungsbedingungen vergleichen","Lieferzeiten und Verfügbarkeit bewerten","Reklamations- und Retourenbedingungen prüfen","Seriosität und Herkunft der Ware prüfen","Händleranfragen vorbereiten","Lieferanten kontaktieren","Händlerkonten beantragen","Lieferantenstatus dokumentieren","Alternativlieferanten aufbauen"]},
+  {t:"Sortiment und Einkaufsstrategie", s:"Sortiment", d:"Welche TCGs, welche Displays, wie viel Bestand? Vom Kernsortiment bis zur ersten Testbestellung.",
+   c:["#ffcc33","#ff7a00"], ic:"cards",
+   i:["Start-TCGs auswählen","Kernsortiment definieren","Displays und versiegelte Produkte auswählen","Zubehörsortiment planen","Einzelkarten als mögliche Kategorie bewerten","Nachfrage und Verfügbarkeit vergleichen","Einkaufspreise und Zielverkaufspreise kalkulieren","Zielmargen je Produktgruppe festlegen","Kapitalbindung je Produkt bewerten","Mindest- und Maximalbestände definieren","Einkaufsbudget auf Produkte verteilen","Testbestellung planen","Erste kleine Display-Investition durchführen","Produkteingang und Verkaufsfähigkeit prüfen","Vorbestellungsstrategie entwickeln","Umgang mit Reprints und Preisänderungen festlegen","Überbestände und Ladenhüter planen"]},
+  {t:"Shop, Technik und Prozesse", s:"Shop & Technik", d:"Shopsystem, Zahlung, Warenwirtschaft und Versandsoftware: das technische Fundament.",
+   c:["#22d3ee","#0e7490"], ic:"chip",
+   i:["Shop-Systeme vergleichen","Eigenen Shop oder Marktplatzstrategie auswählen","Domain sichern","Hosting und technische Grundlagen einrichten","Zahlungsanbieter auswählen","Warenwirtschaft und Lagerverwaltung auswählen","Rechnungs- und Buchhaltungslösung integrieren","Versandsoftware prüfen","Produktdatenstruktur definieren","Bestandsverwaltung einrichten","Datenschutz und Tracking technisch umsetzen","Schnittstellen und APIs bewerten","Technische Sicherheitsmaßnahmen einrichten","Testumgebung und Backups vorbereiten"]},
+  {t:"Branding, Shopaufbau und Kundenerlebnis", s:"Branding & UX", d:"Name, Logo, Farben und ein Shop, der Sammlerherzen höherschlagen lässt, auch auf dem Handy.",
+   c:["#ff4d6d","#c9184a"], ic:"spark",
+   i:["Shopnamen entwickeln","Domain und Namensrechte prüfen","Markenpositionierung definieren","Logo- und Designkonzept entwickeln","Farb- und Schriftkonzept festlegen","Zielgruppenansprache definieren","Kategorien und Navigation erstellen","Produktseiten aufbauen","Produktbilder und Beschreibungen erstellen","Versandinformationen einrichten","Retoureninformationen einrichten","FAQ erstellen","Kontaktmöglichkeiten einrichten","Vertrauenssignale integrieren","Mobile Darstellung prüfen"]},
+  {t:"Logistik und operative Abläufe", s:"Logistik", d:"Wareneingang, Lager, Kommissionierung, Versand und Retouren als klare, wiederholbare Prozesse.",
+   c:["#a3a380","#5c5c3d"], ic:"box",
+   i:["Lagerplatz vorbereiten","Lagerstruktur und Produktkennzeichnung festlegen","Wareneingangsprozess erstellen","Ware auf Vollständigkeit und Schäden prüfen","Bestände erfassen","Produkte sicher einlagern","Verpackungsmaterial beschaffen","Kommissionierungsprozess definieren","Versandprozess definieren","Sendungsverfolgung einrichten","Retourenprozess erstellen","Reklamationsprozess erstellen","Erstattungsprozess definieren","Umgang mit Fehlmengen und beschädigten Lieferungen festlegen","Inventurprozess planen","Prozess für verdächtige oder gefälschte Ware festlegen"]},
+  {t:"Marketing und Kundengewinnung", s:"Marketing", d:"Instagram, TikTok, SEO, Discord und lokale Events: die ersten Kunden finden und messen, was wirkt.",
+   c:["#f472b6","#9d4edd"], ic:"mega",
+   i:["Marketingziele definieren","Zielgruppen für einzelne Kanäle festlegen","Instagram-Strategie entwickeln","TikTok-Strategie entwickeln","YouTube-Strategie bewerten","Google-Suche und SEO planen","Newsletter vorbereiten","Discord- oder Community-Strategie bewerten","Lokale TCG-Events prüfen","Kooperationen prüfen","Content-Plan erstellen","Werbebudget festlegen","Erfolgskennzahlen definieren","Erste Marketingkampagnen testen","Ergebnisse auswerten und optimieren"]},
+  {t:"Launch und Testbetrieb", s:"Launch", d:"Alles noch einmal prüfen, Testbestellungen durchspielen, Soft Launch, Fehler beheben und dann live.",
+   c:["#ff6b35","#ffcc33"], ic:"rocket",
+   i:["Rechtliche Grundlagen abschließend prüfen","Lieferanten und Warenbestand überprüfen","Produktdaten kontrollieren","Preise und Margen kontrollieren","Versandkosten prüfen","Zahlungsanbieter testen","Testbestellungen durchführen","Rückerstattungen testen","Mobile Darstellung testen","Ladegeschwindigkeit prüfen","Kundenservice testen","Verpackungsprozess testen","Inventur durchführen","Soft Launch durchführen","Erste Bestellungen auswerten","Fehler beheben","Offiziellen Launch vorbereiten"]},
+  {t:"Optimierung und Wachstum", s:"Wachstum", d:"Zahlen lesen, Sortiment schärfen und neue Kanäle erschließen, von Einzelkarten bis Internationalisierung.",
+   c:["#ffd84d","#b26bff"], ic:"crown",
+   i:["Umsatz analysieren","Gewinn und Deckungsbeitrag analysieren","Durchschnittlichen Bestellwert überwachen","Conversion-Rate überwachen","Wiederkaufsrate analysieren","Lagerumschlag messen","Retouren- und Stornoquote messen","Werbekosten und Kundengewinnungskosten auswerten","Bestseller und Ladenhüter identifizieren","Lieferantenleistung bewerten","Sortiment optimieren","Weitere Distributoren prüfen","Marktplätze bewerten","Einzelkartenbereich prüfen","B2B-Geschäft bewerten","Lokale Abholung oder Events prüfen","Community ausbauen","Eigenes Lager oder externe Unterstützung bewerten","Internationalisierung prüfen"]}
+];
+
+const RARITY = [
+  {n:"Common",    max:10, col:"#9aa0bd"},
+  {n:"Uncommon",  max:14, col:"#3ddc97"},
+  {n:"Rare",      max:15, col:"#4dabff"},
+  {n:"Epic",      max:16, col:"#b26bff"},
+  {n:"Legendary", max:99, col:"#ffcc33"}
+];
+const rarityOf = n => RARITY.find(r => n <= r.max);
+
+const ICONS = {
+  compass:'<circle cx="32" cy="32" r="22"/><path d="m40 24-5 11-11 5 5-11z" fill="#fff" fill-opacity=".9"/>',
+  chart:'<path d="M12 50h40M18 42V30M28 42V20M38 42V26M48 42V14"/>',
+  shield:'<path d="M32 10 14 17v13c0 12 8 19 18 22 10-3 18-10 18-22V17z"/><path d="m24 32 6 6 11-12"/>',
+  coin:'<ellipse cx="32" cy="20" rx="17" ry="7"/><path d="M15 20v12c0 4 8 7 17 7s17-3 17-7V20M15 32v12c0 4 8 7 17 7s17-3 17-7V32"/>',
+  truck:'<path d="M8 20h30v22H8zM38 28h10l6 7v7H38"/><circle cx="18" cy="45" r="5" fill="#11131f"/><circle cx="46" cy="45" r="5" fill="#11131f"/>',
+  cards:'<rect x="12" y="16" width="22" height="32" rx="3" transform="rotate(-12 23 32)"/><rect x="30" y="14" width="22" height="32" rx="3" transform="rotate(10 41 30)"/>',
+  chip:'<rect x="18" y="18" width="28" height="28" rx="4"/><rect x="26" y="26" width="12" height="12" rx="1"/><path d="M26 10v8M38 10v8M26 46v8M38 46v8M10 26h8M10 38h8M46 26h8M46 38h8"/>',
+  spark:'<path d="M32 8c2 12 6 18 18 24-12 6-16 12-18 24-2-12-6-18-18-24 12-6 16-12 18-24z"/>',
+  box:'<path d="M10 22 32 12l22 10v22L32 54 10 44zM10 22l22 10 22-10M32 32v22"/>',
+  mega:'<path d="M12 26v12h8l20 10V16L20 26z"/><path d="M48 24c3 2 4 5 4 8s-1 6-4 8M22 38l3 12h6"/>',
+  rocket:'<path d="M32 8c10 6 14 18 12 30H20C18 26 22 14 32 8z"/><circle cx="32" cy="26" r="5"/><path d="M20 38l-6 10 10-3M44 38l6 10-10-3M28 44l4 10 4-10"/>',
+  crown:'<path d="M10 46 14 20l10 12 8-18 8 18 10-12 4 26z"/><path d="M12 52h40"/>'
+};
+
+const TOTAL = PHASES.reduce((a,p)=>a+p.i.length,0);
+const KEY = "tcg-roadmap-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { state = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} };
+const isDone = (p,j) => !!state[p+"-"+j];
+const doneIn = p => PHASES[p].i.reduce((a,_,j)=>a+(isDone(p,j)?1:0),0);
+const statusOf = p => { const d=doneIn(p), n=PHASES[p].i.length; return d===0?"open":d===n?"done":"prog"; };
+const pad = n => String(n).padStart(2,"0");
+const esc = s => s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function cardHTML(p, opts={}){
+  const P = PHASES[p], r = rarityOf(P.i.length), d = doneIn(p), n = P.i.length;
+  const cls = ["tcg", opts.holo || r.n==="Legendary" ? "holo":"", d===n ? "done":""].join(" ");
+  return `<div class="${cls}" style="--c1:${P.c[0]};--c2:${P.c[1]}">
+    <div class="tcg-in">
+      <div class="tcg-top"><span class="tcg-name">${esc(P.s)}</span><span class="tcg-cost">${p}</span></div>
+      <div class="tcg-art">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">${ICONS[P.ic]}</svg>
+        <span class="num">${pad(p)}</span>
+      </div>
+      <div class="tcg-type"><span>Phase · Projekt</span><span class="rar">◆ ${r.n}</span></div>
+      <div class="tcg-text">${esc(P.d)}</div>
+      <div class="tcg-foot"><span>${pad(p)}/11 · TCG-SHOP</span><span class="pt">${d}/${n}</span></div>
+    </div>
+    <div class="shine"></div>
+  </div>`;
+}
+
+/* -------- Holo tilt -------- */
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function tilt(container){
+  if (reduce) return;
+  container.addEventListener("pointermove", e=>{
+    const card = e.target.closest(".tcg"); if(!card || !container.contains(card)) return;
+    const b = card.getBoundingClientRect();
+    const x = (e.clientX-b.left)/b.width, y = (e.clientY-b.top)/b.height;
+    card.style.setProperty("--mx", (x*100)+"%"); card.style.setProperty("--my",(y*100)+"%");
+    if (card.closest(".product, .pd-left")) card.style.transform = `rotateY(${(x-.5)*18}deg) rotateX(${(.5-y)*18}deg)`;
+  });
+  container.addEventListener("pointerout", e=>{
+    const card = e.target.closest(".tcg"); if(!card || card.contains(e.relatedTarget)) return;
+    if (card.closest(".product, .pd-left")) card.style.transform = "";
+  });
+}
+
+/* -------- Render -------- */
+let filter = "all", query = "";
+const $ = s => document.querySelector(s);
+
+function render(){
+  // counters
+  const done = Object.values(state).filter(Boolean).length;
+  $("#cartCount").textContent = done;
+  $("#heroPct").textContent = Math.round(done/TOTAL*100) + " %";
+  const counts = {all:12, open:0, prog:0, done:0};
+  PHASES.forEach((_,p)=>counts[statusOf(p)]++);
+  for (const k in counts) $("#n-"+k).textContent = counts[k];
+
+  // fan
+  $("#fan").innerHTML = [0,5,11].map(p=>cardHTML(p,{holo:true})).join("");
+
+  // grid
+  const q = query.trim().toLowerCase();
+  const items = PHASES.map((P,p)=>{
+    const st = statusOf(p);
+    if (filter!=="all" && filter!==st) return "";
+    const hits = q ? P.i.filter(x=>x.toLowerCase().includes(q)) : [];
+    if (q && !hits.length && !P.t.toLowerCase().includes(q)) return "";
+    const d = doneIn(p), n = P.i.length, r = rarityOf(n);
+    const label = {open:"Offen",prog:"In Arbeit",done:"Erledigt"}[st];
+    const hitTxt = hits.length ? `<p>Treffer: ${hits.slice(0,2).map(h=>hl(h,q)).join(" · ")}${hits.length>2?` +${hits.length-2}`:""}</p>` : `<p>${esc(P.d)}</p>`;
+    return `<button class="product" data-p="${p}" style="--c1:${P.c[0]};--c2:${P.c[1]}" aria-label="Phase ${p}: ${esc(P.t)} öffnen">
+      <div class="stage">${cardHTML(p)}</div>
+      <div class="meta"><span>Phase ${pad(p)} · <span style="color:${r.col}">${r.n}</span></span><span class="tag ${st}">${label}</span></div>
+      <h3>${esc(P.t)}</h3>
+      ${hitTxt}
+      <div class="bar"><i style="width:${d/n*100}%"></i></div>
+      <div class="prow"><span class="price">${d}<small> / ${n} Aufgaben</small></span><span class="add">${st==="done"?"Ansehen":st==="prog"?"Weiter":"Starten"}</span></div>
+    </button>`;
+  }).join("");
+  $("#grid").innerHTML = items || `<div class="empty">Keine Phase passt zu diesem Filter.</div>`;
+
+  renderFeature();
+  renderRoad();
+}
+
+function hl(text,q){
+  const i = text.toLowerCase().indexOf(q);
+  if (i<0) return esc(text);
+  return esc(text.slice(0,i)) + "<mark>" + esc(text.slice(i,i+q.length)) + "</mark>" + esc(text.slice(i+q.length));
+}
+
+function renderFeature(){
+  let p = PHASES.findIndex((_,k)=>statusOf(k)!=="done");
+  const el = $("#feature");
+  if (p<0){
+    el.innerHTML = `${cardHTML(11,{holo:true})}<div><div class="kicker">Komplettes Set</div><h3>Alle 179 Aufgaben erledigt.</h3><p>Glückwunsch, der Shop ist gebaut. Zeit, das nächste Set zu planen.</p></div>`;
+    return;
+  }
+  const P = PHASES[p];
+  const open = P.i.map((x,j)=>[x,j]).filter(([,j])=>!isDone(p,j)).slice(0,4);
+  el.style.setProperty("--c1",P.c[0]); el.style.setProperty("--c2",P.c[1]);
+  el.innerHTML = `${cardHTML(p,{holo:true})}
+    <div>
+      <div class="kicker">Als Nächstes · Phase ${pad(p)}</div>
+      <h3>${esc(P.t)}</h3>
+      <p>${doneIn(p)} von ${P.i.length} Aufgaben erledigt. Die nächsten offenen Punkte:</p>
+      <ul class="next-list">${open.map(([x])=>`<li>${esc(x)}</li>`).join("")}</ul>
+      <button class="btn btn-primary" data-open="${p}">Phase öffnen</button>
+    </div>`;
+}
+
+const WAVES = [
+  {t:"Welle 1 · Fundament", ps:[0,1,2,3]},
+  {t:"Welle 2 · Einkauf", ps:[4,5]},
+  {t:"Welle 3 · Shop-Aufbau", ps:[6,7,8,9]},
+  {t:"Welle 4 · Live & Wachstum", ps:[10,11]}
+];
+function renderRoad(){
+  $("#road").innerHTML = WAVES.map(w=>`<div><p class="block-title">${w.t}</p><div class="road">${
+    w.ps.map(p=>{const P=PHASES[p];return `<a class="step" href="#phasen" data-open="${p}" style="--c1:${P.c[0]};--c2:${P.c[1]}"><span class="dot">${pad(p)}</span><span class="stack"><h4>${esc(P.t)}</h4><span>${doneIn(p)}/${P.i.length} erledigt · ${rarityOf(P.i.length).n}</span></span></a>`}).join("")
+  }</div></div>`).join("");
+}
+
+/* -------- Dialog -------- */
+const dlg = $("#dlg");
+let cur = 0;
+function openPhase(p){
+  cur = p;
+  const P = PHASES[p], d = doneIn(p), n = P.i.length;
+  dlg.innerHTML = `<div class="pd" style="--c1:${P.c[0]};--c2:${P.c[1]}">
+    <div class="pd-left">${cardHTML(p,{holo:true})}
+      <div class="pd-progress" style="max-width:260px"><div class="prow"><span>Fortschritt</span><span id="pdCount">${d}/${n}</span></div><div class="bar"><i id="pdBar" style="width:${d/n*100}%"></i></div></div>
+    </div>
+    <div class="pd-right">
+      <div class="pd-top"><div><div class="kicker">Phase ${pad(p)} · ${rarityOf(n).n}</div><h3 id="pdTitle">${esc(P.t)}</h3></div><button class="x" data-close aria-label="Schließen">×</button></div>
+      <p class="desc">${esc(P.d)}</p>
+      <ul class="checks">${P.i.map((x,j)=>`<li><label><input type="checkbox" data-j="${j}" ${isDone(p,j)?"checked":""}><span>${query&&x.toLowerCase().includes(query.trim().toLowerCase())?hl(x,query.trim().toLowerCase()):esc(x)}</span><span class="i">${pad(j+1)}</span></label></li>`).join("")}</ul>
+      <div class="pd-actions">
+        <div class="pd-nav">
+          <button class="btn btn-ghost" data-nav="-1" ${p===0?"disabled style='opacity:.4'":""}>← Zurück</button>
+          <button class="btn btn-ghost" data-nav="1" ${p===11?"disabled style='opacity:.4'":""}>Weiter →</button>
+        </div>
+        <button class="btn btn-primary" data-all>${d===n?"Alle abwählen":"Alle abhaken"}</button>
+      </div>
+    </div>
+  </div>`;
+  if (!dlg.open) dlg.showModal();
+  dlg.querySelector(".pd-right").scrollTop = 0;
+}
+function refreshDialog(){
+  const P = PHASES[cur], d = doneIn(cur), n = P.i.length;
+  dlg.querySelector("#pdCount").textContent = `${d}/${n}`;
+  dlg.querySelector("#pdBar").style.width = (d/n*100)+"%";
+  dlg.querySelector("[data-all]").textContent = d===n ? "Alle abwählen" : "Alle abhaken";
+  const left = dlg.querySelector(".pd-left .tcg");
+  left.outerHTML = cardHTML(cur,{holo:true});
+  render();
+}
+dlg.addEventListener("change", e=>{
+  const j = e.target.dataset.j; if (j===undefined) return;
+  const before = statusOf(cur);
+  state[cur+"-"+j] = e.target.checked; if(!e.target.checked) delete state[cur+"-"+j];
+  save(); refreshDialog();
+  if (before!=="done" && statusOf(cur)==="done") toast(`Phase ${pad(cur)} komplett! Karte gesammelt ✦`);
+});
+dlg.addEventListener("click", e=>{
+  if (e.target===dlg || e.target.closest("[data-close]")) return dlg.close();
+  const nav = e.target.closest("[data-nav]");
+  if (nav && !nav.disabled) return openPhase(cur + Number(nav.dataset.nav));
+  if (e.target.closest("[data-all]")){
+    const all = doneIn(cur)===PHASES[cur].i.length;
+    PHASES[cur].i.forEach((_,j)=>{ if(all) delete state[cur+"-"+j]; else state[cur+"-"+j]=true; });
+    save();
+    dlg.querySelectorAll("input[data-j]").forEach(c=>c.checked=!all);
+    refreshDialog();
+    if (!all) toast(`Phase ${pad(cur)} komplett! Karte gesammelt ✦`);
+  }
+});
+
+document.addEventListener("click", e=>{
+  const prod = e.target.closest(".product,[data-open]");
+  if (prod && !dlg.contains(prod)){ e.preventDefault(); openPhase(Number(prod.dataset.p ?? prod.dataset.open)); }
+  const chip = e.target.closest(".chip");
+  if (chip){
+    filter = chip.dataset.f;
+    document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed", c===chip));
+    render();
+  }
+});
+
+/* -------- Search -------- */
+["#q","#q2"].forEach(id=>$(id).addEventListener("input", e=>{
+  query = e.target.value;
+  document.querySelectorAll("#q,#q2").forEach(i=>{ if(i!==e.target) i.value = query; });
+  render();
+  if (query && window.scrollY < $("#phasen").offsetTop - 200) $("#phasen").scrollIntoView({behavior: reduce?"auto":"smooth"});
+}));
+
+/* -------- Export / Reset -------- */
+$("#exportBtn").addEventListener("click", ()=>{
+  const lines = ["TCG-Onlineshop: Projektphasen", ""];
+  PHASES.forEach((P,p)=>{
+    lines.push(`Phase ${p}: ${P.t} (${doneIn(p)}/${P.i.length})`);
+    P.i.forEach((x,j)=>lines.push(`  [${isDone(p,j)?"x":" "}] ${x}`));
+    lines.push("");
+  });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([lines.join("\n")],{type:"text/plain;charset=utf-8"}));
+  a.download = "tcg-shop-checkliste.txt"; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+  toast("Checkliste exportiert");
+});
+$("#resetBtn").addEventListener("click", ()=>{
+  if (!confirm("Alle Häkchen zurücksetzen?")) return;
+  state = {}; save(); render(); toast("Fortschritt zurückgesetzt");
+});
+
+let tt;
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2600); }
+
+/* -------- Legend & footer -------- */
+$("#rarityLegend").innerHTML = RARITY.map(r=>`<span><i style="background:${r.col}"></i>${r.n}</span>`).join("");
+const fl = (ul,ps)=>$(ul).innerHTML = ps.map(p=>`<li><a href="#phasen" data-open="${p}">${esc(PHASES[p].s)}</a></li>`).join("");
+fl("#f1",[0,1,2,3]); fl("#f2",[4,5,6,7]); fl("#f3",[8,9,10,11]);
+
+render();
+tilt(document.body);
+</script>
+</body>
+</html>
