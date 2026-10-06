@@ -218,13 +218,17 @@ footer{border-top:1px solid var(--line);background:var(--bg-2);padding:48px 0 28
 /* ---------- Modal (product detail) ---------- */
 dialog{border:0;padding:0;background:transparent;color:var(--text);max-width:min(1000px,calc(100vw - 24px));width:100%;max-height:calc(100dvh - 24px)}
 dialog::backdrop{background:rgba(5,6,10,.78);backdrop-filter:blur(6px)}
-.pd{background:var(--surface);border:1px solid var(--line);border-radius:22px;display:grid;overflow:hidden;max-height:calc(100dvh - 24px)}
-@media(min-width:860px){.pd{grid-template-columns:340px 1fr}}
+.pd{background:var(--surface);border:1px solid var(--line);border-radius:22px;display:grid;max-height:calc(100dvh - 24px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+@media(min-width:860px){.pd{grid-template-columns:340px 1fr;overflow:hidden;height:calc(100dvh - 24px);max-height:760px}}
+html:has(dialog[open]),html:has(dialog[open]) body{overflow:hidden}
+dialog{overflow:hidden}
+.x:focus:not(:focus-visible){outline:none}
 .pd-left{background:radial-gradient(80% 60% at 50% 40%,color-mix(in srgb,var(--c1) 28%,transparent),transparent 70%),var(--bg-2);padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;perspective:900px}
-.pd-left .tcg{width:200px}
+.pd-left .tcg{width:150px}
+@media(max-width:859px){.pd-left{padding:20px 20px 16px;gap:12px}}
 @media(min-width:860px){.pd-left .tcg{width:260px}}
-.pd-right{padding:26px 24px;overflow:auto;display:flex;flex-direction:column;gap:16px}
-@media(min-width:860px){.pd-right{padding:32px 34px}}
+.pd-right{padding:22px 20px 24px;display:flex;flex-direction:column;gap:16px}
+@media(min-width:860px){.pd-right{padding:32px 34px;overflow-y:auto;overscroll-behavior:contain;min-height:0}}
 .pd-top{display:flex;justify-content:space-between;align-items:start;gap:12px}
 .pd-right h3{font-family:var(--display);font-weight:800;font-size:clamp(24px,3vw,30px);letter-spacing:-.03em;margin:4px 0 0;line-height:1.1}
 .pd-right .desc{color:var(--muted);margin:0}
@@ -628,6 +632,7 @@ function openPhase(p){
     </div>
   </div>`;
   if (!dlg.open) dlg.showModal();
+  dlg.querySelector(".pd").scrollTop = 0;
   dlg.querySelector(".pd-right").scrollTop = 0;
 }
 function refreshDialog(){
